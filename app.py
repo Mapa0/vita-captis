@@ -1,5 +1,6 @@
 from flask import Flask, request
 from rich import print
+from os import environ
 from src.DataCollector import DataCollector, GeographicOperations
 
 
@@ -27,9 +28,8 @@ def save_data():
     return "Salvo"
 
 if __name__ == '__main__':
-    app.run()
-
-
+    port = int(environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
 
 
 # The view function above will return {"hello": "world"}
