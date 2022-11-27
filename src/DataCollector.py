@@ -44,12 +44,11 @@ class GeographicOperations:
 
 class DataCollector:
     def __init__(self):
-        #TODO Substituir essa massaroca aqui por ENV ou aws secrets!
-        self.endpoint = "ENDPOINT"
-        self.port = "PORTA"
-        self.dbname = "DATABASE"
-        self.user = "MEUUSUARIO"
-        self.password = "MINHASENHA"
+        self.endpoint = "vitacaptis.ccqjibk2mgb8.us-east-1.rds.amazonaws.com"
+        self.port = "5432"
+        self.dbname = "postgres"
+        self.user = "vitakod"
+        self.password = "vita=kod22"
         self.geo_operations = GeographicOperations()
         self.conn = self.get_connection()
 
