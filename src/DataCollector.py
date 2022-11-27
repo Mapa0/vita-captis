@@ -100,6 +100,5 @@ class DataCollector:
         sintomas = report['sintomas']
         if(self.insert_report(sexo, faixa_etaria, uf, municipio, regiao_saude, user_id, cod_ibge, lat, long, report_id)):
             if(self.insert_sintomas(sintomas, report_id)):
-                #TODO gerenciamento de pontos e seguro -> VITACLUB
                 return True
         return False
