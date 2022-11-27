@@ -2,6 +2,7 @@ from flask import Flask, request
 from rich import print
 from src.DataCollector import DataCollector, GeographicOperations
 
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -25,7 +26,10 @@ def save_data():
     dc.save_report(body)
     return "Salvo"
 
-app.run()
+if __name__ == '__main__':
+    app.run()
+
+
 
 
 # The view function above will return {"hello": "world"}
