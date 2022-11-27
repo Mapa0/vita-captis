@@ -1,8 +1,6 @@
 import psycopg2
 from shapely.geometry import Point # Point class
 from shapely.geometry import shape
-import pandas as pd 
-import numpy as np
 import uuid
 import shapefile
 import json
@@ -105,16 +103,3 @@ class DataCollector:
                 #TODO gerenciamento de pontos e seguro -> VITACLUB
                 return True
         return False
-    
-if __name__ == "__main__":
-    dc = DataCollector()
-    df = pd.DataFrame(
-    np.random.randn(100, 2) / [50, 50] + [-20.4634, -54.6281],
-    columns=['lat', 'lon'])
-    for index, row in df.iterrows():
-        report_id = str(uuid.uuid4())
-        print(report_id)
-        lat = row['lat']
-        lng = row['lon']
-        dc.insert_report(0, 0, "MS", "Campo Grande", "segredo", None, 0, lat, lng, report_id)
-    dc.conn.close()
