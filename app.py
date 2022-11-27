@@ -13,7 +13,7 @@ CORS(app)
 def index():
     return {'Vita-Kod': 'Vita-Captis'}
 
-@app.route('/geo')
+@app.route('/geo', methods=['GET', 'POST'])
 def geo():
     body = request.get_json()
     print(body)
@@ -22,7 +22,7 @@ def geo():
     go = GeographicOperations()
     return go.get_point_geo_info(lat, lng)
 
-@app.route('/save_data')
+@app.route('/save_data', methods=['GET', 'POST'])
 def save_data():
     body = request.get_json()
     print(body)
