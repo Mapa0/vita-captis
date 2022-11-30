@@ -15,12 +15,16 @@ def index():
 
 @app.route('/get_reports', methods=['GET'])
 def get_reports():
-    body = request.get_json()
-    if ('limit' in body and 'offset' in body):
-        limit = body['limit']
-        offset = body['offset']
-        dc = DataCollector()
-        return dc.get_reports(limit, offset)
+    if request.get_json is not None:
+        body = request.get_json(force=True, cache=True)
+        if ('limit' in body and 'offset' in body):
+            limit = body['limit']
+            offset = body['offset']
+            dc = DataCollector()
+            return dc.get_reports(limit, offset)
+        else:
+            dc = DataCollector()
+            return dc.get_reports()
     else:
         dc = DataCollector()
         return dc.get_reports()
