@@ -52,9 +52,12 @@ class DataCollector:
         self.geo_operations = GeographicOperations()
         self.conn = self.get_connection()
 
-    def get_reports(self, limit, offset):
+    def get_reports(self, limit=None, offset=None):
         cur = self.conn.cursor()
-        cur.execute(f"""SELECT * from reports LIMIT {limit} OFFSET {offset} ORDER BY created_at""")
+        if limit == None and offset == None:
+            cur.execute(f"""SELECT * from reports LIMIT {limit} OFFSET {offset} ORDER BY created_at""")
+        else:
+            cur.execute(f"""SELECT * from reports ORDER BY created_at""")
         query_results = cur.fetchall()
         self.conn.close()
         formatted_output = []

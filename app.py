@@ -16,11 +16,15 @@ def index():
 @app.route('/get_reports', methods=['GET'])
 def get_reports():
     body = request.get_json()
-    limit = body['limit']
-    offset = body['offset']
-    dc = DataCollector()
-    return dc.get_reports(limit, offset)
-
+    if ('limit' in body and 'offset' in body):
+        limit = body['limit']
+        offset = body['offset']
+        dc = DataCollector()
+        return dc.get_reports(limit, offset)
+    else:
+        dc = DataCollector()
+        return dc.get_reports()
+    
 @app.route('/geo', methods=['GET', 'POST'])
 def geo():
     body = request.get_json()
