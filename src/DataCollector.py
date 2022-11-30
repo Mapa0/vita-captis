@@ -69,8 +69,8 @@ class DataCollector:
                 "Municipio": element[3],
                 "CodIbge": element[7],
                 "RegiaoAdministrativa": element[4],
-                "lat": float(element[8]),
-                "lon": float(element[9]),
+                "Lat": float(element[8]),
+                "Lon": float(element[9]),
                 "ReportId": element[10],
                 "UserId": element[6],
                 "CreatedAt": element[5]
