@@ -54,8 +54,8 @@ class DataCollector:
 
     def get_reports(self, limit=None, offset=None):
         cur = self.conn.cursor()
-        if limit == None and offset == None:
-            cur.execute(f"""SELECT * from reports LIMIT {limit} OFFSET {offset} ORDER BY created_at""")
+        if limit is not None and offset is not None:
+            cur.execute(f"""SELECT * from reports ORDER BY created_at LIMIT {limit} OFFSET {offset}""")
         else:
             cur.execute(f"""SELECT * from reports ORDER BY created_at""")
         query_results = cur.fetchall()
