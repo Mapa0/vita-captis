@@ -75,7 +75,7 @@ class DataCollector:
                 "UserId": element[6],
                 "CreatedAt": element[5]
             }
-            formatted_output.append(element)
+            formatted_output.append(report)
         return formatted_output
 
     def insert_report(self, sexo, faixa_etaria, uf, municipio, regiao_saude, user_id, cod_ibge, lat, long, report_id):
