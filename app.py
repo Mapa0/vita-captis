@@ -15,7 +15,7 @@ def index():
 
 @app.route('/get_reports', methods=['GET'])
 def get_reports():
-    if request.get_json is not None:
+    if request.data:
         body = request.get_json(force=True, cache=True)
         if ('limit' in body and 'offset' in body):
             limit = body['limit']
