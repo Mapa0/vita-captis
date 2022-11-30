@@ -52,6 +52,13 @@ class DataCollector:
         self.geo_operations = GeographicOperations()
         self.conn = self.get_connection()
 
+    def get_reports(self, limit, offset):
+        cur = self.conn.cursor()
+        cur.execute(f"""SELECT * from reports LIMIT {limit} OFFSET {offset}""")
+        query_results = cur.fetchall()
+        self.conn.close()
+        return query_results
+
     def insert_report(self, sexo, faixa_etaria, uf, municipio, regiao_saude, user_id, cod_ibge, lat, long, report_id):
         try:
             cur = self.conn.cursor()
