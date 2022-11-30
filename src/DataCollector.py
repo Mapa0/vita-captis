@@ -54,10 +54,26 @@ class DataCollector:
 
     def get_reports(self, limit, offset):
         cur = self.conn.cursor()
-        cur.execute(f"""SELECT * from reports LIMIT {limit} OFFSET {offset}""")
+        cur.execute(f"""SELECT * from reports LIMIT {limit} OFFSET {offset} ORDER BY created_at""")
         query_results = cur.fetchall()
         self.conn.close()
-        return query_results
+        formatted_output = []
+        for element in query_results:
+            report = {
+                "Sexo": element[0],
+                "FaixaEtaria": element[1],
+                "UF": element[2],
+                "Municipio": element[3],
+                "CodIbge": element[7],
+                "RegiaoAdministrativa": element[4],
+                "lat": float(element[8]),
+                "lon": float(element[9]),
+                "ReportId": element[10],
+                "UserId": element[6],
+                "CreatedAt": element[5]
+            }
+            formatted_output.append(element)
+        return formatted_output
 
     def insert_report(self, sexo, faixa_etaria, uf, municipio, regiao_saude, user_id, cod_ibge, lat, long, report_id):
         try:
