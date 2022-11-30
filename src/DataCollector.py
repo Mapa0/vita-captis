@@ -55,7 +55,7 @@ class DataCollector:
     def insert_report(self, sexo, faixa_etaria, uf, municipio, regiao_saude, user_id, cod_ibge, lat, long, report_id):
         try:
             cur = self.conn.cursor()
-            cur.execute("INSERT INTO reports (sexo, faixa_etaria, uf, municipio, regiao_saude, user_id, cod_ibge, lat, long, report_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);",(sexo, faixa_etaria, uf, municipio, regiao_saude, user_id, cod_ibge, lat, long, report_id))
+            cur.execute("INSERT INTO reports (sexo, faixa_etaria, uf, municipio, regiao_saude, user_id, cod_ibge, lat, long, id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);",(sexo, faixa_etaria, uf, municipio, regiao_saude, user_id, cod_ibge, lat, long, report_id))
             self.conn.commit()
             return True
         except Exception as e:
@@ -77,10 +77,6 @@ class DataCollector:
     def get_connection(self):
         try:
             conn = psycopg2.connect(host=self.endpoint, port=self.port, database=self.dbname, user=self.user, password=self.password)
-            #cur = conn.cursor()
-            #cur.execute("""SELECT now()""")
-            #query_results = cur.fetchall()
-            #print(query_results)
             return conn
         except Exception as e:
             print("Database connection failed due to {}".format(e))
